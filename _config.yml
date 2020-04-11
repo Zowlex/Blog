@@ -10,7 +10,7 @@ title: Fares' Blog
 description: Join me in my journey
 github_username: Zowlex
 # you can comment the below line out if your repo name is not different than your baseurl
-github_repo: "blog"
+github_repo: "Blog"
 
 # OPTIONAL: override baseurl and url if using a custom domain
 # Note: leave out the trailing / from this value. 
