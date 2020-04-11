@@ -5,7 +5,7 @@ description: python project
 categories: [programming]
 title: John Conways' game of life in python
 ---
-# John Conways' game of life in python
+# Introduction
 <p align='center'> <img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Gospers_glider_gun.gif" id='top'> </p>
 
 This small project represents the python Implementation of *John Conways'* game of life, if you don't know what I'm talking about stick with me, I'll explain everything from idea to implementation.
