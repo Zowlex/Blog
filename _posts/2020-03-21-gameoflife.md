@@ -2,7 +2,7 @@
 toc: true
 layout: post
 description: python project
-categories: [programming, python]
+categories: [programming]
 title: John Conways' game of life in python
 ---
 # John Conways' game of life in python
@@ -11,11 +11,6 @@ title: John Conways' game of life in python
 This small project represents the python Implementation of *John Conways'* game of life, if you don't know what I'm talking about stick with me, I'll explain everything from idea to implementation.
 
 Project repo: [Game Of Life](https://github.com/Zowlex/Python-projects)
-
-Table of contents:
-
-1. TOC
-{:toc}
 
 ## What is the game of life 
  
