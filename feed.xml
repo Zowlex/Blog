@@ -1,28 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="/Blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/Blog/" rel="alternate" type="text/html" /><updated>2020-04-11T00:47:04-05:00</updated><id>/Blog/feed.xml</id><title type="html">Fares’ Blog</title><subtitle>Join me on my journey to glory!</subtitle><entry><title type="html">John Conways’ game of life in python</title><link href="/Blog/programming/python/2020/03/21/gameoflife.html" rel="alternate" type="text/html" title="John Conways' game of life in python" /><published>2020-03-21T00:00:00-05:00</published><updated>2020-03-21T00:00:00-05:00</updated><id>/Blog/programming/python/2020/03/21/gameoflife</id><content type="html" xml:base="/Blog/programming/python/2020/03/21/gameoflife.html">&lt;h1 id=&quot;john-conways-game-of-life-in-python&quot;&gt;John Conways’ game of life in python&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="/Blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/Blog/" rel="alternate" type="text/html" /><updated>2020-04-11T00:49:51-05:00</updated><id>/Blog/feed.xml</id><title type="html">Fares’ Blog</title><subtitle>Join me on my journey to glory!</subtitle><entry><title type="html">John Conways’ game of life in python</title><link href="/Blog/programming/2020/03/21/gameoflife.html" rel="alternate" type="text/html" title="John Conways' game of life in python" /><published>2020-03-21T00:00:00-05:00</published><updated>2020-03-21T00:00:00-05:00</updated><id>/Blog/programming/2020/03/21/gameoflife</id><content type="html" xml:base="/Blog/programming/2020/03/21/gameoflife.html">&lt;h1 id=&quot;john-conways-game-of-life-in-python&quot;&gt;John Conways’ game of life in python&lt;/h1&gt;
 &lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://upload.wikimedia.org/wikipedia/commons/e/e5/Gospers_glider_gun.gif&quot; id=&quot;top&quot; /&gt; &lt;/p&gt;
 
 &lt;p&gt;This small project represents the python Implementation of &lt;em&gt;John Conways’&lt;/em&gt; game of life, if you don’t know what I’m talking about stick with me, I’ll explain everything from idea to implementation.&lt;/p&gt;
 
 &lt;p&gt;Project repo: &lt;a href=&quot;https://github.com/Zowlex/Python-projects&quot;&gt;Game Of Life&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Table of contents:&lt;/p&gt;
-
-&lt;ol id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#john-conways-game-of-life-in-python&quot; id=&quot;markdown-toc-john-conways-game-of-life-in-python&quot;&gt;John Conways’ game of life in python&lt;/a&gt;    &lt;ol&gt;
-      &lt;li&gt;&lt;a href=&quot;#what-is-the-game-of-life&quot; id=&quot;markdown-toc-what-is-the-game-of-life&quot;&gt;What is the game of life&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#motivation&quot; id=&quot;markdown-toc-motivation&quot;&gt;Motivation&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#implementation&quot; id=&quot;markdown-toc-implementation&quot;&gt;Implementation&lt;/a&gt;        &lt;ol&gt;
-          &lt;li&gt;&lt;a href=&quot;#engine&quot; id=&quot;markdown-toc-engine&quot;&gt;Engine&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#interface&quot; id=&quot;markdown-toc-interface&quot;&gt;Interface&lt;/a&gt;&lt;/li&gt;
-        &lt;/ol&gt;
-      &lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#conclusion&quot; id=&quot;markdown-toc-conclusion&quot;&gt;Conclusion&lt;/a&gt;        &lt;ol&gt;
-          &lt;li&gt;&lt;a href=&quot;#next-steps&quot; id=&quot;markdown-toc-next-steps&quot;&gt;Next Steps:&lt;/a&gt;&lt;/li&gt;
-        &lt;/ol&gt;
-      &lt;/li&gt;
-    &lt;/ol&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
 
 &lt;h2 id=&quot;what-is-the-game-of-life&quot;&gt;What is the game of life&lt;/h2&gt;
 
