@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>John Conways’ game of life in python | Fares’ Blog</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="John Conways’ game of life in python" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="python project" />
+<meta property="og:description" content="python project" />
+<meta property="og:site_name" content="Fares’ Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-03-21T00:00:00-05:00" />
+<script type="application/ld+json">
+{"description":"python project","@type":"BlogPosting","headline":"John Conways’ game of life in python","dateModified":"2020-03-21T00:00:00-05:00","datePublished":"2020-03-21T00:00:00-05:00","url":"/Blog/programming/2020/03/21/gameoflife.html","mainEntityOfPage":{"@type":"WebPage","@id":"/Blog/programming/2020/03/21/gameoflife.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/Blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/Blog/feed.xml" title="Fares' Blog" /><link rel="shortcut icon" type="image/x-icon" href="/Blog/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>John Conways’ game of life in python | Fares’ Blog</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="John Conways’ game of life in python" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="python project" />
+<meta property="og:description" content="python project" />
+<meta property="og:site_name" content="Fares’ Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-03-21T00:00:00-05:00" />
+<script type="application/ld+json">
+{"description":"python project","@type":"BlogPosting","headline":"John Conways’ game of life in python","dateModified":"2020-03-21T00:00:00-05:00","datePublished":"2020-03-21T00:00:00-05:00","url":"/Blog/programming/2020/03/21/gameoflife.html","mainEntityOfPage":{"@type":"WebPage","@id":"/Blog/programming/2020/03/21/gameoflife.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="/Blog/feed.xml" title="Fares' Blog" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head><body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/Blog/">Fares&#39; Blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/Blog/about/">About Me</a><a class="page-link" href="/Blog/search/">Search</a><a class="page-link" href="/Blog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">John Conways&#39; game of life in python</h1><p class="page-description">python project</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-03-21T00:00:00-05:00" itemprop="datePublished">
+        Mar 21, 2020
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      7 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/Blog/categories/#programming">programming</a>
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#john-conways-game-of-life-in-python">John Conways’ game of life in python</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#what-is-the-game-of-life">What is the game of life</a></li>
+<li class="toc-entry toc-h2"><a href="#motivation">Motivation</a></li>
+<li class="toc-entry toc-h2"><a href="#implementation">Implementation</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#engine">Engine</a></li>
+<li class="toc-entry toc-h3"><a href="#interface">Interface</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#conclusion">Conclusion</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#next-steps">Next Steps:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul><h1 id="john-conways-game-of-life-in-python">
+<a class="anchor" href="#john-conways-game-of-life-in-python" aria-hidden="true"><span class="octicon octicon-link"></span></a>John Conways’ game of life in python</h1>
+<p align="center"> <img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Gospers_glider_gun.gif" id="top"> </p>
+
+<p>This small project represents the python Implementation of <em>John Conways’</em> game of life, if you don’t know what I’m talking about stick with me, I’ll explain everything from idea to implementation.</p>
+
+<p>Project repo: <a href="https://github.com/Zowlex/Python-projects">Game Of Life</a></p>
+
+<p>Table of contents:</p>
+
+<ol id="markdown-toc">
+  <li>
+<a href="#john-conways-game-of-life-in-python" id="markdown-toc-john-conways-game-of-life-in-python">John Conways’ game of life in python</a>    <ol>
+      <li><a href="#what-is-the-game-of-life" id="markdown-toc-what-is-the-game-of-life">What is the game of life</a></li>
+      <li><a href="#motivation" id="markdown-toc-motivation">Motivation</a></li>
+      <li>
+<a href="#implementation" id="markdown-toc-implementation">Implementation</a>        <ol>
+          <li><a href="#engine" id="markdown-toc-engine">Engine</a></li>
+          <li><a href="#interface" id="markdown-toc-interface">Interface</a></li>
+        </ol>
+      </li>
+      <li>
+<a href="#conclusion" id="markdown-toc-conclusion">Conclusion</a>        <ol>
+          <li><a href="#next-steps" id="markdown-toc-next-steps">Next Steps:</a></li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+</ol>
+
+<h2 id="what-is-the-game-of-life">
+<a class="anchor" href="#what-is-the-game-of-life" aria-hidden="true"><span class="octicon octicon-link"></span></a>What is the game of life</h2>
+
+<p>According to <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Wikipedia</a> the game of life is in simple terms a game that mimics the behavior and lifecycle of biological cells in nature following 4 simple rules:</p>
+<ol>
+  <li>Any live cell with fewer than two live neighbours dies, as if by underpopulation.</li>
+  <li>Any live cell with two or three live neighbours lives on to the next generation.</li>
+  <li>Any live cell with more than three live neighbours dies, as if by overpopulation.</li>
+  <li>Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.</li>
+</ol>
+
+<p>Out of these simple rules we can create starting configurations that lead to complex systems and shapes like <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life#/media/File:Game_of_life_pulsar.gif">oscillators</a>, <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life#/media/File:Animated_Hwss.gif">spaceships</a> and even <a href="https://en.wikipedia.org/wiki/Hashlife#/media/File:Turing_Machine_in_Golly.png">turing machines</a></p>
+
+<h2 id="motivation">
+<a class="anchor" href="#motivation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Motivation</h2>
+
+<p>I was glad that I stumbled upon a great talk on youtube called <a href="https://www.youtube.com/watch?v=gdSlcxxYAA8">The Art of Code</a> which I highly recommend watching it. Dylan Beattie is a programmer and musician talked about different beautiful artistic moments of coding and what coders have achieved from writing mesmerizing <a href="https://en.wikipedia.org/wiki/Quine_(computing)">quines</a> to coming up with weird but funny programming languages like <a href="https://codewithrockstar.com/">Rockstar programming language</a> but what has really caught my attention is talking about the game of life which made my jaw drop and let me think very deeply about its capabilities. At this moment I knew nothing about it and suddenly had the urge to implement it in my favourite programming language (python)</p>
+
+<h2 id="implementation">
+<a class="anchor" href="#implementation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Implementation</h2>
+
+<h3 id="engine">
+<a class="anchor" href="#engine" aria-hidden="true"><span class="octicon octicon-link"></span></a>Engine</h3>
+
+<p>At this point I have no idea how to implement this graphically so I started first by creating a Grid class which represents our infinte 2d space. This grid is in fact a 2d array which translates to a nested list in python. our grid of length w and width h is initialized by w*h zeros when called.</p>
+
+<div class="Toast">
+   <span class="Toast-icon"><svg class="octicon octicon-info" viewbox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 01-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 01-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>
+   <span class="Toast-content">N.B: 0 means that the cell is dead and 1 is alive</span>
+</div>
+
+<p>class Grid:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">random</span>
+
+<span class="k">class</span> <span class="nc">Grid</span><span class="p">(</span><span class="nb">list</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">):</span>
+        <span class="s">"""
+        initializes a grid of zeros with length w and width h 
+        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">w</span> <span class="o">=</span> <span class="n">w</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">h</span> <span class="o">=</span> <span class="n">h</span>
+        <span class="nb">super</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">w</span><span class="p">):</span>
+        <span class="c1"># Add an empty array that will hold each cell
+</span>        <span class="c1"># in this row
+</span>            <span class="bp">self</span><span class="o">.</span><span class="n">append</span><span class="p">([])</span>
+            <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">h</span><span class="p">):</span>
+                <span class="bp">self</span><span class="p">[</span><span class="n">row</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># Append a cell
+</span>    
+    <span class="k">def</span> <span class="nf">show</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="p">):</span>
+            <span class="n">ch</span><span class="o">=</span><span class="s">'['</span>
+            <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="p">):</span>
+                <span class="n">ch</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">])</span><span class="o">+</span><span class="s">','</span>
+            <span class="k">if</span> <span class="n">col</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                <span class="n">ch</span><span class="o">=</span><span class="n">ch</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="s">']'</span>
+                <span class="k">print</span><span class="p">(</span><span class="n">ch</span><span class="p">,</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">)</span> 
+</code></pre></div></div>
+<p>Example:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">grid</span> <span class="o">=</span> <span class="n">Grid</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">grid</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+<p>Output:</p>
+
+<p>[0,0,0]</p>
+
+<p>[0,0,0]</p>
+
+<p>[0,0,0]</p>
+
+<p>Now that we have defined and created our data structure the next task is to define a function to calculate the number of alive neighbors for each cell of position x,y by visiting  its next eight neighbors and summing up their values.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="k">def</span> <span class="nf">alive_neighbors</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
+        <span class="s">"""
+        returns the number of alive neighbors (=1) for a certain x,y position
+        """</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">x</span><span class="o">+</span><span class="mi">2</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="mi">2</span><span class="p">):</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">row</span><span class="o">==</span><span class="n">x</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">col</span><span class="o">==</span><span class="n">y</span><span class="p">):</span>
+                    <span class="k">continue</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                        <span class="n">res</span><span class="o">+=</span><span class="mi">1</span>
+                        <span class="k">pass</span>
+                <span class="k">except</span> <span class="nb">IndexError</span><span class="p">:</span><span class="c1">#If this error is raised for cells on the edges we consider the next edge cells are the neighbors, like we are wrapping a sheet of paper so the edges touch 
+</span>                    <span class="n">row</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">row</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="p">)</span><span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">w</span>
+                    <span class="n">col</span> <span class="o">=</span> <span class="p">(</span><span class="n">y</span><span class="o">+</span><span class="n">col</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="p">)</span><span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">h</span>
+                        
+        <span class="k">return</span> <span class="n">res</span>
+</code></pre></div></div>
+<p>Example:</p>
+
+<p>[0,1,0]</p>
+
+<p>[0,0,0]</p>
+
+<p>[1,1,1]</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">neighbors</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">alive_neighbors</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># cell in position 1,1
+</span><span class="k">print</span><span class="p">(</span><span class="n">neighbors</span><span class="p">)</span>
+</code></pre></div></div>
+<p>Output:
+ 4 which is the sum of neighbor alive cells</p>
+
+<p>Before thinking about gui we have to try it on terminal and see if everything works fine. We start by making a grid and choose starting configuration, get each cell’s state and update it in next_grid, after looping through all cells we print the updated version (next_grid) and each loop through the grid represnts a new generation of cells.</p>
+
+<p>test.py</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">grid</span> <span class="kn">import</span> <span class="n">Grid</span>
+
+
+<span class="n">grid</span> <span class="o">=</span> <span class="n">Grid</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="n">grid</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">grid</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">grid</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">grid</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="n">next_grid</span> <span class="o">=</span> <span class="n">Grid</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+
+            <span class="n">state</span> <span class="o">=</span> <span class="n">grid</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span>
+            <span class="c1">#get every element's neighbors of grid
+</span>            <span class="n">neighbors</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">alive_neighbors</span><span class="p">(</span><span class="n">row</span><span class="p">,</span><span class="n">col</span><span class="p">)</span>
+            
+            <span class="k">if</span> <span class="n">neighbors</span> <span class="o">==</span> <span class="mi">3</span> <span class="ow">and</span> <span class="n">state</span> <span class="o">==</span><span class="mi">0</span> <span class="p">:</span><span class="c1"># These are the first 3 rules stated above
+</span>                <span class="n">next_grid</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="k">elif</span> <span class="p">(</span><span class="n">neighbors</span><span class="o">&lt;</span><span class="mi">2</span> <span class="ow">or</span> <span class="n">neighbors</span><span class="o">&gt;</span><span class="mi">3</span><span class="p">)</span> <span class="ow">and</span> <span class="n">state</span> <span class="o">==</span><span class="mi">1</span> <span class="p">:</span> <span class="c1"># This is the last rule of game of life
+</span>                <span class="n">next_grid</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">next_grid</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">state</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="s">'='</span><span class="o">*</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">next_grid</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>        
+    <span class="n">grid</span> <span class="o">=</span> <span class="n">next_grid</span>
+</code></pre></div></div>
+<p>Output: this is the representation of an oscillator</p>
+
+<p>[0,0,0,0,0]   ===&gt;     [0,0,1,0,0]</p>
+
+<p>[0,1,1,1,0]   ===&gt;     [0,0,1,0,0]</p>
+
+<p>[0,0,0,0,0]   ===&gt;     [0,0,1,0,0]</p>
+
+<h3 id="interface">
+<a class="anchor" href="#interface" aria-hidden="true"><span class="octicon octicon-link"></span></a>Interface</h3>
+
+<p>For the gui I decided to use pygame for its simplicity and powerful functionalities, we start by defining some global variables.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Define some colors
+</span><span class="n">BLACK</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">WHITE</span> <span class="o">=</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span>
+<span class="n">GREEN</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">RED</span> <span class="o">=</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># This sets the WIDTH and HEIGHT of each grid location
+</span><span class="n">SQUARE</span> <span class="o">=</span> <span class="mi">20</span>
+
+<span class="c1"># This sets the margin between each cell
+</span><span class="n">MARGIN</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="c1">#Screen resolution
+</span><span class="n">w</span> <span class="o">=</span> <span class="mi">700</span>
+<span class="n">h</span> <span class="o">=</span> <span class="mi">500</span>
+
+<span class="c1">#calculate row_num, col_num from current resolution
+</span><span class="n">row_num</span> <span class="o">=</span> <span class="n">w</span><span class="o">//</span><span class="n">SQUARE</span>
+<span class="n">col_num</span> <span class="o">=</span> <span class="n">h</span><span class="o">//</span><span class="n">SQUARE</span>
+</code></pre></div></div>
+<p>Next define the draw method which represents our grid of zeros and ones by graphical squares of white color if dead and green color if alive:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#def initialize grid
+</span><span class="k">def</span> <span class="nf">draw_grid</span><span class="p">(</span><span class="n">row_num</span><span class="p">,</span> <span class="n">col_num</span><span class="p">,</span> <span class="n">g</span><span class="p">):</span>
+                <span class="c1"># Draw the grid
+</span>                <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">row_num</span><span class="p">):</span>
+                    <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">col_num</span><span class="p">):</span>
+                        <span class="n">color</span> <span class="o">=</span> <span class="n">WHITE</span>
+                        <span class="n">pygame</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">rect</span><span class="p">(</span><span class="n">screen</span><span class="p">,</span>
+                                            <span class="n">color</span><span class="p">,</span>
+                                            <span class="p">[(</span><span class="n">MARGIN</span> <span class="o">+</span> <span class="n">SQUARE</span><span class="p">)</span> <span class="o">*</span> <span class="n">row</span> <span class="o">+</span> <span class="n">MARGIN</span><span class="p">,</span>
+                                            <span class="p">(</span><span class="n">MARGIN</span> <span class="o">+</span> <span class="n">SQUARE</span><span class="p">)</span> <span class="o">*</span> <span class="n">column</span> <span class="o">+</span> <span class="n">MARGIN</span><span class="p">,</span>
+                                            <span class="n">SQUARE</span><span class="p">,</span>
+                                            <span class="n">SQUARE</span><span class="p">])</span>
+                        <span class="k">if</span> <span class="n">g</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">column</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                            <span class="n">pygame</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">rect</span><span class="p">(</span><span class="n">screen</span><span class="p">,</span>
+                                    <span class="n">GREEN</span><span class="p">,</span>
+                                    <span class="p">[(</span><span class="n">MARGIN</span> <span class="o">+</span> <span class="n">SQUARE</span><span class="p">)</span> <span class="o">*</span> <span class="n">row</span> <span class="o">+</span> <span class="n">MARGIN</span><span class="p">,</span>
+                                    <span class="p">(</span><span class="n">MARGIN</span> <span class="o">+</span> <span class="n">SQUARE</span><span class="p">)</span> <span class="o">*</span> <span class="n">column</span> <span class="o">+</span> <span class="n">MARGIN</span><span class="p">,</span>
+                                    <span class="n">SQUARE</span><span class="p">,</span>
+                                    <span class="n">SQUARE</span><span class="p">])</span>
+                <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">flip</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>Then we have to create a window of size w,h and draw initial grid</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">create_window</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">):</span>
+    <span class="c1"># Set the HEIGHT and WIDTH of the screen
+</span>    <span class="n">screen</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">set_mode</span><span class="p">([</span><span class="n">w</span><span class="p">,</span><span class="n">h</span><span class="p">])</span>
+    <span class="c1"># Set title of screen
+</span>    <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">set_caption</span><span class="p">(</span><span class="s">"John Conway's game of life"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">screen</span>
+
+<span class="c1">#create window of size 700px by 500px
+</span><span class="n">screen</span> <span class="o">=</span> <span class="n">create_window</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
+
+<span class="c1">#draw initial grid
+</span><span class="n">draw_grid</span><span class="p">(</span><span class="n">row_num</span><span class="p">,</span> <span class="n">col_num</span><span class="p">,</span> <span class="n">grid</span><span class="p">)</span>  
+</code></pre></div></div>
+<p>The final step is defining the main loop to keep the game running and see some <strong>magic patterns</strong>, once we press the space key we apply the same rules on the grid like we did on the first prototype of the game and draw each new generation of cells to the screen of our window.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># -------- Main Program Loop -----------
+</span><span class="k">while</span> <span class="ow">not</span> <span class="n">done</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">():</span>  <span class="c1"># User did something
+</span>        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="nb">type</span> <span class="o">==</span> <span class="n">pygame</span><span class="o">.</span><span class="n">QUIT</span><span class="p">:</span>  <span class="c1"># If user clicked close
+</span>            <span class="n">done</span> <span class="o">=</span> <span class="bp">True</span>  <span class="c1"># Flag that we are done so we exit this loop
+</span>        <span class="k">elif</span> <span class="n">event</span><span class="o">.</span><span class="nb">type</span> <span class="o">==</span> <span class="n">pygame</span><span class="o">.</span><span class="n">KEYDOWN</span><span class="p">:</span> <span class="c1"># Game starts
+</span>            <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">key</span> <span class="o">==</span> <span class="n">K_SPACE</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">'space key pressed'</span><span class="p">)</span>
+                <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+                    <span class="n">next_grid</span> <span class="o">=</span> <span class="n">Grid</span><span class="p">(</span><span class="n">row_num</span><span class="p">,</span> <span class="n">col_num</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">row_num</span><span class="p">):</span>
+                        <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">col_num</span><span class="p">):</span>
+
+                            <span class="n">state</span> <span class="o">=</span> <span class="n">grid</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span><span class="c1">#current grid state 0 or 1
+</span>                            
+                            <span class="n">neighbors</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">alive_neighbors</span><span class="p">(</span><span class="n">row</span><span class="p">,</span><span class="n">col</span><span class="p">)</span><span class="c1">#current grid alive neighbors
+</span>                            
+                            <span class="k">if</span> <span class="n">state</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="p">(</span><span class="n">neighbors</span><span class="o">&lt;</span><span class="mi">2</span> <span class="ow">or</span> <span class="n">neighbors</span><span class="o">&gt;</span><span class="mi">3</span><span class="p">):</span>
+                                <span class="n">next_grid</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+                            <span class="k">elif</span> <span class="n">state</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">neighbors</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span> 
+                                <span class="n">next_grid</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+                            <span class="k">else</span><span class="p">:</span>
+                                <span class="n">next_grid</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">state</span>
+                                
+                    <span class="n">draw_grid</span><span class="p">(</span><span class="n">row_num</span><span class="p">,</span> <span class="n">col_num</span><span class="p">,</span> <span class="n">next_grid</span><span class="p">)</span>
+                    <span class="n">grid</span> <span class="o">=</span> <span class="n">next_grid</span>
+                    <span class="n">x</span><span class="o">+=</span><span class="mi">1</span>
+                    <span class="k">print</span><span class="p">(</span><span class="s">'generation:'</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+                    <span class="c1"># Limit to x frames per second
+</span>                    <span class="n">clock</span><span class="o">.</span><span class="n">tick</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="c1"># Be IDLE friendly. If you forget this line, the program will 'hang'
+# on exit.
+</span><span class="n">pygame</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
+</code></pre></div></div>
+<p>Final Result of a random config:</p>
+
+<p align="center"><img src="https://raw.githubusercontent.com/Zowlex/Python-projects/master/gameoflife/screenshots/gol.gif"></p>
+
+<h2 id="conclusion">
+<a class="anchor" href="#conclusion" aria-hidden="true"><span class="octicon octicon-link"></span></a>Conclusion</h2>
+<p>I had so fun working on this project and I hope it helps you because at first place I did not find a good python implementation of this project.</p>
+
+<h3 id="next-steps">
+<a class="anchor" href="#next-steps" aria-hidden="true"><span class="octicon octicon-link"></span></a>Next Steps:</h3>
+<ul>
+  <li>
+<del>Add drawing functionality by mouse, so you can choose easily the starting config</del> (done)</li>
+  <li>
+<del>I think of optimizing the game by using numpy instead of grid</del> (done)</li>
+  <li>Make an interactive web app of it using flask and deploy it</li>
+</ul>
+<p align="center"><a href="#top">Go back up</a></p>
+
+
+  </div><a class="u-url" href="/Blog/programming/2020/03/21/gameoflife.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/Blog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/Blog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/Blog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>Join me on my journey to glory!</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/Zowlex" title="Zowlex"><svg class="svg-icon grey"><use xlink:href="/Blog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/fares_lass" title="fares_lass"><svg class="svg-icon grey"><use xlink:href="/Blog/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
