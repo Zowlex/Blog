@@ -2,7 +2,7 @@
 toc: true
 layout: post
 description: python project
-categories: [programming]
+categories: [programming, python]
 title: John Conways' game of life in python
 ---
 # John Conways' game of life in python
