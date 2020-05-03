@@ -3,6 +3,7 @@ toc: true
 layout: post
 description: python project
 categories: [programming]
+comments: true
 title: John Conways' game of life in python
 ---
 # Introduction
