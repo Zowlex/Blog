@@ -30,10 +30,10 @@
 
   
       ,"page3": {
-          "title": "",
+          "title": "Personal projects",
           "content": "Project Description Link(s) Category . Soccer database analysis | Data analysis and exploration of the european soccer database from kaggle. | - repo | data analysis | . Explore weather trends | Analyze local and global temperature data and compare the temperature trends where I live to overall global temperature trends. | - repo | data analysis | . MNIST guai | Desktop app for handwritten digit recognition using a machine learning classifier. I wanted to build on this ml project to test the classifier in real-time. | - repo | machine learning, | . Game of Life | This project represents the python Implementation of John Conway’s game of life using pygame library | - repo - blogpost | game programming | .",
-          "url": "/Blog/_pages/projects.html",
-          "relUrl": "/_pages/projects.html",
+          "url": "/Blog/projects/",
+          "relUrl": "/projects/",
           "date": ""
       }
       
