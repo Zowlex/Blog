@@ -8,7 +8,6 @@ permalink: /projects/
 <style>
 .foo td {
   width: 100%;
-  font-size: 50px
 }
 </style>
 
