@@ -1,11 +1,13 @@
 ---
+
 toc: true
 layout: post
 description: python project
 categories: [programming]
-comments: true
 title: John Conways' game of life in python
+
 ---
+
 # Introduction
 <p align='center'> <img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Gospers_glider_gun.gif" id='top'> </p>
 
