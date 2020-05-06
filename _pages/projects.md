@@ -11,6 +11,9 @@ permalink: /projects/
   display:table;
   width: 100%;
   }
+  td {
+  border: 1px solid;
+}
 </style>
 
 
