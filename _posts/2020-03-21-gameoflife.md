@@ -5,7 +5,6 @@ layout: post
 description: python project
 categories: [programming]
 title: John Conways' game of life in python
-comments: true
 
 ---
 
