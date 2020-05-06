@@ -107,5 +107,5 @@ kramdown:
   hard_wrap: false
   syntax_highlighter: rouge
 disqus:
-    shortname: <Fares Lassoued>
+    shortname: Fares Lassoued
 
