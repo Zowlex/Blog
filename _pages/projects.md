@@ -8,6 +8,7 @@ permalink: /projects/
 <style>
 table {
   width: 100%;
+  white-space: normal;
 }
 </style>
 
