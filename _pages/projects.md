@@ -7,8 +7,8 @@ permalink: /projects/
 
 <style>
 table {
-  table-layout: fixed;
-  width: 100%;
+  table-layout: auto;
+  
 }
 
 td {
