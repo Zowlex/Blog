@@ -6,11 +6,22 @@ permalink: /projects/
 ---
 
 <style>
-class1 .table {
-  table-layout: auto;
-  width:100%;
-  white-space: nowrap;
-  
+table {
+  border: 1px;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table td {
+  border: 1px solid green;
+}
+
+table td.shrink {
+  white-space: nowrap
+}
+
+table td.expand {
+  width: 99%
 }
 
 </style>
