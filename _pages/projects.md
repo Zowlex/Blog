@@ -7,22 +7,15 @@ permalink: /projects/
 
 <style>
 table {
-  border: 1px;
-  border-collapse: collapse;
   width: 100%;
 }
 
 table td {
-  border: 1px solid green;
+  border: 1px;
+  white-space: nowrap;
+  width: 100%;
 }
 
-table td.shrink {
-  white-space: nowrap
-}
-
-table td.expand {
-  width: 99%
-}
 
 </style>
 
