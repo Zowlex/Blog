@@ -81,16 +81,18 @@ window.onload = wrap_img;
   </header>
 
   <div class="post-content">
-    <p>table {
+    <style>
+table {
   table-layout: fixed;
   width: 100px;
-}</p>
+}
 
-<p>td {
+td {
   white-space: nowrap;
-  overflow: hidden;         /* &lt;- this does seem to be required */
+  overflow: hidden;         /* <- this does seem to be required */
   text-overflow: ellipsis;
-}</p>
+}
+</style>
 
 <table class="table td">
   <thead>
