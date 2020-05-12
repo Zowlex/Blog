@@ -81,7 +81,18 @@ window.onload = wrap_img;
   </header>
 
   <div class="post-content">
-    <table class="wide">
+    <p>table {
+  table-layout: fixed;
+  width: 100px;
+}</p>
+
+<p>td {
+  white-space: nowrap;
+  overflow: hidden;         /* &lt;- this does seem to be required */
+  text-overflow: ellipsis;
+}</p>
+
+<table class="table td">
   <thead>
     <tr>
       <th>Project</th>
