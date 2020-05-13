@@ -6,10 +6,10 @@ permalink: /projects/
 ---
 
 <style>
-table {
-  width: 100%;
-  white-space: normal;
+table td{
+  max-width: none;
 }
+  
 </style>
 
 | Project                  |                                                                Description                                                           | Link(s)                                                                                                                                                      |      Category      |
