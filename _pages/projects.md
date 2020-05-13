@@ -6,8 +6,13 @@ permalink: /projects/
 ---
 
 <style>
+table {
+white-space: normal; 
+font-size: 100%;
+}
 table td{
   max-width: none;
+  box-sizing: content-box;
 }
   
 </style>
