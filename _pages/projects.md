@@ -12,7 +12,9 @@ font-size: 100%;
 }
 table td{
   max-width: none;
-  box-sizing: content-box;
+}
+* {
+box-sizing: unset;
 }
   
 </style>
