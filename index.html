@@ -74,17 +74,52 @@ window.onload = wrap_img;
 </header>
 <main class="page-content" aria-label="Content">
       <div class="wrapper">
-        <div class="home"><h2 id="welcome-to-my-blog">Welcome to my blog!</h2>
+        <div class="home"><style>
+  html,
+body,
+main.container {
+	height: 100%;
+}
 
-<p><img src="images/bg_13.jpg" alt="img" /></p>
+main.container {
+	display: table;
+	width: 100%;
+	margin-top: -50px;
+	padding: 0;
+	/*set left/right padding according to needs*/
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
 
-<p>Join me on my journey towards a better version of me, you and humanity. I’ll share my experiences, thoughts and tutorials in the topics that interest me. I decided to start this blog because I truly believe in Prof.Richard Feynmann’s quote:</p>
-<blockquote>
-  <p>If you cannot explain something in simple terms, you do not understand it.</p>
-</blockquote>
-<hr />
+main .row {
+	height: 100%;
+	display: table-row;
+}
 
-<h1 id="posts">Posts:</h1>
+main .sidebar {
+	display: table-cell;
+	width: 200px;
+	background: #383435;
+	color: #aaa;
+	padding-top: 20px;
+}
+
+main .content {
+	display: table-cell;
+	vertical-align: top;
+	padding-left: 10px;
+	padding-top: 20px;
+}
+</style>
+
+<main class="container">
+	<div class="row">
+		<div class="sidebar text-center">
+			<img src="https://storage.googleapis.com/kaggle-avatars/images/2987076-kg.png" class="img-circle" />
+			<h3>Welcome</h3>
+		</div>
+# Posts:
+</div></main>
 
 
 
